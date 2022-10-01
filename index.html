@@ -7,30 +7,36 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div class="calcBtns">
-            <div class="calcMiddle"> 
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
+        <div id="calculator">    
+            <div id="display">
+                <div id="lastResult">2 x 2 = 4</div>
+                <div id="currentCalc"></div>
             </div>
-            <div class="calcRight"> 
-                <button>=</button>
-                <button>+</button>
-                <button>-</button>
-                <button>x</button>
-                <button>/</button>
+            <div class="calcBtns">
+                <div class="calcMiddle"> 
+                    <button class="calcNum">1</button>
+                    <button class="calcNum">2</button>
+                    <button class="calcNum">3</button>
+                    <button class="calcNum">4</button>
+                    <button class="calcNum">5</button>
+                    <button class="calcNum">6</button>
+                    <button class="calcNum">7</button>
+                    <button class="calcNum">8</button>
+                    <button class="calcNum">9</button>
+                </div>
+                <div class="calcRight"> 
+                    <button id="calcEquals">=</button>
+                    <button class="calcOperator">+</button>
+                    <button class="calcOperator">-</button>
+                    <button class="calcOperator">x</button>
+                    <button class="calcOperator">/</button>
+                </div>
+                <div class="calcBottom">    
+                    <button class="calcNum">0</button>
+                    <button>CLEAR</button>
+                </div>
             </div>
-            <div class="calcBottom"></div>    
-                <button>0</button>
-                <button>CLEAR</button>
-            </div>
-    </div>
+        </div>
     </body>
     <script type="text/javascript" src="calculator.js"></script>
 </html>
