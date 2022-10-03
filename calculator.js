@@ -3,60 +3,80 @@ const lastResultDisplay = document.getElementById("lastResult");
 const calcNumberButtons = document.getElementsByClassName("calcNum");
 const calcEqualsButton = document.querySelector("#calcEquals")
 const calcOperatorButtons = document.querySelectorAll(".calcOperator")
+const calcClearButton = document.querySelector("#calcClear");
+
+let calcInputArray;
+let toggleOpVal = 1;
+let toggleEqualVal = 1;
 
 // add number to input & toggle operators on if off
 for (let i = 0; i < calcNumberButtons.length; i++) {
     let btnNumValue = calcNumberButtons[i].textContent;
     calcNumberButtons[i].addEventListener("click", 
     function () {   
-        if ((currentCalcDisplay.textContent.split(" ").length % 2) === 0) {
+        numBtnClick(btnNumValue)
+    })
+};
+
+function numBtnClick(btnNumValue) {
+        calcInputArray = currentCalcDisplay.textContent.split(" ")
+        if ((calcInputArray.length % 2) === 0) {
             currentCalcDisplay.textContent += ` ${btnNumValue}`;
         } else {
             currentCalcDisplay.textContent += `${btnNumValue}`;
         }    
-        toggleOpCheck(1);
-    })
-};
+        toggleOpBtn(1);
+        toggleEqualBtn(1);
+}
 
-// add operator to input & toggle operators off(positive/negate numbers calc & calc with fractions WiP)
+// add operator to input & toggle operators off
 for (let i = 0; i < calcOperatorButtons.length; i++) {
     let value = calcOperatorButtons[i].textContent;
     calcOperatorButtons[i].addEventListener("click", 
-    function () {
-        if (currentCalcDisplay.textContent.split(" ").slice(-1)[0].length >= 1 && (currentCalcDisplay.textContent.split(" ").length % 2) === 1) {
-            currentCalcDisplay.textContent += ` ${value}`;
-        } else if (((currentCalcDisplay.textContent.split(" ").length % 2) === 0) && value === "+" || value === "-") { 
-            currentCalcDisplay.textContent += ` ${value}`;
-            toggleOpCheck(0);
-            toggleEqualBtn();
-        } else if (value === "+" || value === "-") {
-            currentCalcDisplay.textContent += `${value}`;
-            toggleOpCheck(0);
-        }
+    function(){
+        operatorClick(value);
     })
 };
 
-let toggleEqualVal;
-function toggleEqualBtn() {
-    calcEqualsButton.toggleAttribute("disabled");
-    toggleEqualVal = 0;
+function operatorClick(value) {
+    if (toggleOpVal === 1) {    
+        calcInputArray = currentCalcDisplay.textContent.split(" ");
+        if (calcInputArray.slice(-1)[0].length >= 1 && (calcInputArray.length % 2) === 1) {
+            currentCalcDisplay.textContent += ` ${value}`;
+        } else if (((calcInputArray.length % 2) === 0) && value === "+" || value === "-") { 
+            currentCalcDisplay.textContent += ` ${value}`;
+            toggleOpBtn(0);
+            toggleEqualBtn(0);
+        } else if (value === "+" || value === "-") {
+            currentCalcDisplay.textContent += `${value}`;
+            toggleOpBtn(0);
+            toggleEqualBtn(1);
+        }
+    }
 }
 
-let toggleOpVal;
 // set operator buttons to off & on: (a === 1) toggles once on if off, (a === 0) just mainly to toggle off 
-function toggleOpCheck(a) {
+function toggleOpBtn(a) {
     if (a === 1 && toggleOpVal === 0 ) {
-        toggleOp();
         toggleOpVal = 1;
-        if (toggleEqualVal === 0) toggleEqualBtn();
     } else if (a === 0) {
-        toggleOp();
         toggleOpVal = 0;
     }
 } 
 
-function toggleOp () {
-    calcOperatorButtons.forEach(element => { element.toggleAttribute("disabled") });
+calcClearButton.addEventListener("click", 
+function () {
+    currentCalcDisplay.textContent = "";
+    toggleOpBtn(1);
+    toggleEqualBtn(1);
+});
+
+function toggleEqualBtn(a) {
+    if (a === 1 && toggleEqualVal === 0) {
+        toggleEqualVal = 1;
+    } else if (a === 0) {
+        toggleEqualVal = 0;
+    }
 }
 
 let lastResult = 0;
@@ -66,28 +86,30 @@ let a;
 let b;
 let op;
 // get and split input into array (pattern is: firstVal/sum, operator, secondVal) & calculate until end of array length
-document.getElementById("calcEquals").addEventListener("click", 
+calcEqualsButton.addEventListener("click", 
 function () {
-    let calcInputValue = currentCalcDisplay.textContent.split(" ");
-    
-    if ( calcInputValue.length >= 3) {
-        a = operate(calcInputValue[0], calcInputValue[1], calcInputValue[2])
+    if (toggleEqualVal === 1) {  
+        calcInputArray = currentCalcDisplay.textContent.split(" ");
         
-        if ( calcInputValue.length >= 4)    
-            for (let i = 3; i < calcInputValue.length; i++) { 
-                if ((i % 2) === 1) {
-                    op = calcInputValue[i];
-                } else {
-                    b = calcInputValue[i];
-                    a = operate(a, op, b);
-                }
-            } 
+        if ( calcInputArray.length >= 3) {
+            a = operate(calcInputArray[0], calcInputArray[1], calcInputArray[2])
             
-            if (calcInputValue.length >= 4 && (calcInputValue.length % 2) === 0) { 
+            if ( calcInputArray.length >= 4)    
+                for (let i = 3; i < calcInputArray.length; i++) { 
+                    if ((i % 2) === 1) {
+                        op = calcInputArray[i];
+                    } else {
+                        b = calcInputArray[i];
+                        a = operate(a, op, b);
+                    }
+                } 
+                
+            if (calcInputArray.length >= 4 && (calcInputArray.length % 2) === 0) { 
                 currentCalcDisplay.textContent = `${a} ${op}`;
             } else {
-            currentCalcDisplay.textContent = a;
+                currentCalcDisplay.textContent = a;
             }
+        }
     }
 })
 
