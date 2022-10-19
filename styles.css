@@ -1,0 +1,110 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #dadce0;
+    }
+
+#calculator {
+    display: flex;
+    margin-top: 3vw;
+    flex-direction: column;
+    align-items: center;
+    background-color: #30333a;
+    height: 42vw;
+    width: 32vw;
+    border-radius: 2.5vw;
+    border: solid #860042 0.33vw;
+}
+
+#display {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1vw;
+    margin-top: 2vw;
+    background-color: #2a141d;
+    border-style: solid;
+    border-color: #86fdc5;
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+    color: mintcream;
+    font-size: 2vw;
+}
+
+#lastResultBox {
+    height: 4.5vw;
+    width: 29vw;
+    border-color: #860042;
+    border-style: double;
+    border-bottom-color: #860042;
+    /* border-radius: 1vw; */
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    overflow: hidden;
+    text-align: end;
+    word-break: break-word;
+}
+
+#currentCalcBox {
+    height: 5vw;
+    width: 29vw;
+    border-style: double;
+    border-color: #860042;
+    border-top-color: #860042;
+    display: flex;
+    justify-content: end;
+    overflow: hidden;
+    /* text-align: center; */
+    /* word-break: unset; */
+    /* align-content: center; */
+    white-space: nowrap;
+}
+
+.calcBtns * button, .calcBtns button {
+    color: rgb(131 255 188);
+    background-color: rgb(44 44 52);
+    font-size: 1.8vw;
+    width: 4vw;
+    height: 4vw;
+    overflow: hidden;
+    text-size-adjust: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calcBtns .btnGrid {
+    display:grid;
+    grid-template-columns: repeat(4, 2fr);
+    margin-top: 1.5vw;
+    column-gap: 2vw;
+    row-gap: 0.8vw;
+}
+
+.calcTop {
+font-size: 0.4vw;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+}
+
+.calcBtns {
+margin-top: 1.4vw;
+}
+
+span#lastResult {
+    margin-right: 0.2vw;
+    margin-bottom: 0.2vw;
+    margin-left: 0.2vw;
+    font-size: 0.74vw;
+}
+
+span#currentCalc {
+    margin-right: 0.3vw;
+    margin-bottom: 0.3vw;
+    margin-left: 0.3vw;
+    display: flex;
+    align-items: center;
+}

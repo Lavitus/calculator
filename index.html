@@ -9,32 +9,31 @@
     <body>
         <div id="calculator">    
             <div id="display">
-                <div id="lastResult"></div>
-                <div id="currentCalc" tabindex="0"></div>
+                <div id="lastResultBox"><span id="lastResult"></span></div>
+                <div id="currentCalcBox" tabindex="0"><span id="currentCalc"></span></div>
             </div>
             <div class="calcBtns">
-                <div class="calcMiddle"> 
-                    <button class="calcNum">1</button>
-                    <button class="calcNum">2</button>
-                    <button class="calcNum">3</button>
-                    <button class="calcNum">4</button>
-                    <button class="calcNum">5</button>
-                    <button class="calcNum">6</button>
-                    <button class="calcNum">7</button>
-                    <button class="calcNum">8</button>
-                    <button class="calcNum">9</button>
+                <div class="calcTop">
+                    <button id="calcClear"><span>AC</span></button>
+                    <button id="calcDel"><span>DEL</span></button>
                 </div>
-                <div class="calcRight"> 
-                    <button id="calcEquals">=</button>
-                    <button class="calcOperator">+</button>
-                    <button class="calcOperator">-</button>
-                    <button class="calcOperator">x</button>
-                    <button class="calcOperator">÷</button>
-                </div>
-                <div class="calcBottom">    
-                    <button class="calcNum">0</button>
-                    <button id="calcClear">AC</button>
-                    <button id="calcDel">DEL</button>
+                <div class="btnGrid">
+                    <button class="calcNum"><span>1</span></button>
+                    <button class="calcNum"><span>2</span></button>
+                    <button class="calcNum"><span>3</span></button>
+                    <button class="calcOperator"><span></span>+</button>
+                    <button class="calcNum"><span>4</span></button>
+                    <button class="calcNum"><span>5</span></button>
+                    <button class="calcNum"><span>6</span></button>
+                    <button class="calcOperator"><span></span>-</button>
+                    <button class="calcNum"><span>7</span></button>
+                    <button class="calcNum"><span>8</span></button>
+                    <button class="calcNum"><span>9</span></button>
+                    <button class="calcOperator"><span></span>÷</button>
+                    <button id="calcDot"><span>.</span></button>
+                    <button class="calcNum"><span>0</span></button>
+                    <button id="calcEquals"><span>=</span></button>
+                    <button class="calcOperator"><span></span>x</button>
                 </div>
             </div>
         </div>

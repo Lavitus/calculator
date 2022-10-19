@@ -5,6 +5,7 @@ const calcEqualsButton = document.querySelector("#calcEquals")
 const calcOperatorButtons = document.querySelectorAll(".calcOperator")
 const calcClearButton = document.querySelector("#calcClear");
 const calcDelButton = document.getElementById("calcDel");
+const calcDotButton = document.getElementById("calcDot");
 
 let calcInputArray;
 let toggleOpVal = 1;
@@ -12,7 +13,7 @@ let toggleEqualVal = 1;
 let displayType = "input";
 let operatorKeys = ["+","-","/","*"];
 
-currentCalcDisplay.addEventListener("keydown", 
+window.addEventListener("keydown", 
 function(e) {
         if (e.key <= 9) { 
             numBtnClick(e.key)
@@ -20,12 +21,19 @@ function(e) {
             operatorClick(e.key);
         } else if (e.key === "Backspace") {
             delInput();
+        } else if (e.key === ".") {
+            addDot();
         }
 })
 
-currentCalcDisplay.addEventListener("click", () => {
-    currentCalcDisplay.focus()
-});
+calcDotButton.addEventListener("click", () => addDot() );
+
+function addDot() {
+    calcInputArray = currentCalcDisplay.textContent.split(" ");
+    if (((calcInputArray.length % 2) === 1) && calcInputArray.at(-1).includes(".") === false) {
+    currentCalcDisplay.textContent += ".";
+    }
+}
 
 calcDelButton.addEventListener("click", () => {
     delInput();
